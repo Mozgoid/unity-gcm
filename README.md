@@ -3,29 +3,19 @@ unity-gcm
 
 ## About this repository
 
-This is an Unity plugin to use Google Cloud Messaging (GCM) for Android.
-By using this plugin, you can implement GCM without writing Java code.
+Forked from https://github.com/kobakei/unity-gcm
 
-* Receive GCM events in C#/UnityScript/Boo layer
-* Show notification view in Android status bar
+Plugin adapted to work with Parse notifications.
 
-## Installation
+Notification data is now taken from the field "date" of incoming json.
 
-Download .unitypackage file from [here](https://github.com/kskkbys/unity-gcm/blob/master/build/unity-gcm.unitypackage?raw=true)
+Parameter "content_title" is optional now, and by default, it is equal to the application name. The "content_text" replaced by "alert" to work with the format of the Parse notifications.
 
-And import the file into your Unity project.
-
-## Developer Guide
-
-* https://github.com/kskkbys/unity-gcm/wiki/Developer-Guide
-
-## For contributors
-
-* https://github.com/kskkbys/unity-gcm/wiki/Contribute-this-project
+I just changed the code, I do not recompiled .jar and the .unitypackage.
 
 ## Known Issues
 
-* https://github.com/kskkbys/unity-gcm/issues
+Unity won't start by tapping on notification if you overrided your main activity. Change it in UnityGCMNotificationManager.java on line 41.
 
 ## Licenses
 
