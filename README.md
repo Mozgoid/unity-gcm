@@ -17,5 +17,5 @@ https://github.com/Mozgoid/unity-gcm/wiki/Installation
 
 ## Known Issues
 
-Unity won't start by tapping on notification if you overrided your main activity. Change it in UnityGCMNotificationManager.java on line 41.
+Unity won't start by tapping on notification if you overrided your main activity. Change it in [UnityGCMNotificationManager](https://github.com/Mozgoid/unity-gcm/blob/master/source/UnityGcmPlugin/src/com/kskkbys/unitygcmplugin/UnityGCMNotificationManager.java) on line 41.
 
