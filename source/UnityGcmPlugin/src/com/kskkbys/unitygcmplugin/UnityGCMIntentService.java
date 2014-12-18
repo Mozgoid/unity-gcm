@@ -60,7 +60,7 @@ public class UnityGCMIntentService extends GCMBaseIntentService {
 		try {
 			String contentTitle;
 			try {
-				contentTitle = jsonData.getString("content_title");
+				contentTitle = json.getString("content_title");
 			} catch (JSONException e) {
 				contentTitle = getAppLable();
 			}
