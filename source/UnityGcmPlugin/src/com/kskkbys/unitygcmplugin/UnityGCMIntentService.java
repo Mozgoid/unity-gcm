@@ -42,13 +42,18 @@ public class UnityGCMIntentService extends GCMBaseIntentService {
 		Bundle bundle = intent.getExtras();
 		Set<String> keys = bundle.keySet();
 		JSONObject json = new JSONObject();
+		JSONObject jsonData = null;
 		try {
 			for (String key : keys) {
 				Log.v(TAG, key + ": " + bundle.get(key));
 				json.put(key, bundle.get(key));
 			}
-			Util.sendMessage(ON_MESSAGE, json.toString());
+			jsonData = new JSONObject(json.getString("data"));
+			Util.sendMessage(ON_MESSAGE, jsonData.toString());
 		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		catch (Exception e) {
 			e.printStackTrace();
 		}
 		
@@ -57,32 +62,29 @@ public class UnityGCMIntentService extends GCMBaseIntentService {
 		}
 		
 		// Show native notification view in status bar if defined fields are put.
+
+		String contentTitle;
 		try {
-			String contentTitle;
-			try {
-				contentTitle = json.getString("content_title");
-			} catch (JSONException e) {
-				contentTitle = getAppLable();
-			}
-		
 			contentTitle = json.getString("content_title");
-			String contentText;
-			try {
-				contentText = json.getString("content_text");
-			} catch (JSONException e) {
-				contentText = "";
-			}
-			String ticker;
-			try {
-				ticker = json.getString("ticker");
-			} catch (JSONException e) {
-				ticker = contentTitle; // If no ticker specified, use title
-			}
-			UnityGCMNotificationManager.showNotification(this, contentTitle, contentText, ticker);
 		} catch (JSONException e) {
-			// Title is mandatory, do not display in status bar
-			Log.v(TAG, "No content_title specified, not showing anything in Android status bar");
+			contentTitle = getAppLable();
 		}
+	
+		contentTitle = json.getString("content_title");
+		String contentText;
+		try {
+			contentText = json.getString("content_text");
+		} catch (JSONException e) {
+			contentText = "";
+		}
+		String ticker;
+		try {
+			ticker = json.getString("ticker");
+		} catch (JSONException e) {
+			ticker = contentTitle; // If no ticker specified, use title
+		}
+		UnityGCMNotificationManager.showNotification(this, contentTitle, contentText, ticker);
+
 	}
 
 	//http://stackoverflow.com/questions/11229219/android-get-application-name-not-package-name
