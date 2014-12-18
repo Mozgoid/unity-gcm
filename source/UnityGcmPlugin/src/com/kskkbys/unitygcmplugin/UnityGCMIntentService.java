@@ -57,8 +57,14 @@ public class UnityGCMIntentService extends GCMBaseIntentService {
 		}
 		
 		// Show native notification view in status bar if defined fields are put.
-		String contentTitle;
 		try {
+			String contentTitle;
+			try {
+				contentTitle = jsonData.getString("content_title");
+			} catch (JSONException e) {
+				contentTitle = getAppLable();
+			}
+		
 			contentTitle = json.getString("content_title");
 			String contentText;
 			try {
@@ -79,6 +85,19 @@ public class UnityGCMIntentService extends GCMBaseIntentService {
 		}
 	}
 
+	//http://stackoverflow.com/questions/11229219/android-get-application-name-not-package-name
+	private String getAppLable() {
+		//return getString(getApplicationInfo().labelRes);
+		android.content.pm.PackageManager lPackageManager = getPackageManager();
+	    	android.content.pm.ApplicationInfo lApplicationInfo = null;
+	    	try {
+	        	lApplicationInfo = lPackageManager.getApplicationInfo(getApplicationInfo().packageName, 0);
+	    	} catch (Exception e) {
+	    	}
+	    	return (String) (lApplicationInfo != null ? lPackageManager.getApplicationLabel(lApplicationInfo) : "");
+	}
+	
+	
 	@Override
 	protected void onRegistered(Context context, String registrationId) {
 		Log.v(TAG, "onRegistered");
