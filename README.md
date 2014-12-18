@@ -17,8 +17,3 @@ I just changed the code, I do not recompiled .jar and the .unitypackage.
 
 Unity won't start by tapping on notification if you overrided your main activity. Change it in UnityGCMNotificationManager.java on line 41.
 
-## Licenses
-
-Copyright 2013 Keisuke Kobayashi
-
-This software is licensed under Apache License 2.0
