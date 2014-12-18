@@ -65,19 +65,19 @@ public class UnityGCMIntentService extends GCMBaseIntentService {
 
 		String contentTitle;
 		try {
-			contentTitle = json.getString("content_title");
+			contentTitle = jsonData.getString("content_title");
 		} catch (JSONException e) {
 			contentTitle = getAppLable();
 		}
 		String contentText;
 		try {
-			contentText = json.getString("content_text");
+			contentText = jsonData.getString("content_text");
 		} catch (JSONException e) {
 			contentText = "";
 		}
 		String ticker;
 		try {
-			ticker = json.getString("ticker");
+			ticker = jsonData.getString("ticker");
 		} catch (JSONException e) {
 			ticker = contentTitle; // If no ticker specified, use title
 		}
