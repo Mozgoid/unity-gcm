@@ -38,6 +38,7 @@ public class UnityGCMNotificationManager {
 		Log.v(TAG, "showNotification");
 		
 		// Intent 
+		// change UnityPlayerProxyActivity to your activity class if it overridden (e.g. com.prime31.UnityPlayerNativeActivity
 		Intent intent = new Intent(context, UnityPlayerProxyActivity.class);
 		PendingIntent contentIntent = PendingIntent.getActivity(context, REQUEST_CODE_UNITY_ACTIVITY, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 		
